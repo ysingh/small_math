@@ -1,43 +1,55 @@
+#include <assert.h>
 #include "ymath.h"
 
 int main(void) {
-				vec3* emptyVec = vec3_new_empty();
-				vec3* initVec = vec3_new(1.15F, 2.00, 3.00);
-				vec3* testVec = vec3_new(1.00, 1.00, 1.00);
+	vec3 *emptyVec = vec3_new_empty();
+	vec3 *testVec = vec3_new(1.00, 1.00, 1.00);
 
-				printf("Should be: 0, 0, 0\n");
-				vec3_prnt(emptyVec);
+	assert(emptyVec->x == 0.00);
+	assert(emptyVec->y == 0.00);
+	assert(emptyVec->z == 0.00);
 
-				emptyVec->x = 3.00;
-				emptyVec->y = 4.00;
-				emptyVec->z = 5.00;
+	emptyVec->elements[0] = 7.00;
+	emptyVec->elements[1] = 7.00;
+	emptyVec->elements[2] = 7.00;
 
-				printf("Should be: 3, 4, 5\n");
-				vec3_prnt(emptyVec);
-				
-				printf("Should be: 1.15, 2, 3\n");
-				vec3_prnt(initVec);
+	assert(emptyVec->x == 7.00);
+	assert(emptyVec->y == 7.00);
+	assert(emptyVec->z == 7.00);
 
-				printf("Should be: 1, 1, 1\n");
-				vec3_prnt(testVec);
+	emptyVec->x = 3.00;
+	emptyVec->y = 4.00;
+	emptyVec->z = 5.00;
 
-				vec3_mul_s(8.00, initVec);
-				vec3_div_s(4.00, testVec);
-				vec3_negate(emptyVec);
+	assert(emptyVec->x == 3.00);
+	assert(emptyVec->y == 4.00);
+	assert(emptyVec->z == 5.00);
 
-				printf("Should be: -3, -4, -5\n");
-				vec3_prnt(emptyVec);
+	vec3 *initVec = vec3_new(1.15F, -2.00, 0.5);
 
-				printf("Should be: 9.20, 16, 24\n");
-				vec3_prnt(initVec);
+	assert(initVec->x == 1.15F);
+	assert(initVec->y == -2.00);
+	assert(initVec->z == 0.50);
 
-				printf("Should be .25, .25, .25\n");
-				vec3_prnt(testVec);
+	vec3_muls(8.00, initVec);
 
-				float m = vec3_magnitude(emptyVec);
-				printf("Should be 7.07106781187 MAGN: %f\n", m);
 
-				vec3_normalize(initVec);
-				printf("Should be: 
-				vec3_print(initVec);
+	vec3_divs(4.00, testVec);
+	vec3_neg(emptyVec);
+
+	printf("Should be: -3, -4, -5\n");
+	vec3_prnt(emptyVec);
+
+	printf("Should be: 9.20, 16, 24\n");
+	vec3_prnt(initVec);
+
+	printf("Should be .25, .25, .25\n");
+	vec3_prnt(testVec);
+
+	float m = vec3_mag(emptyVec);
+	printf("Should be 7.07106781187 MAGN: %f\n", m);
+
+	vec3_norm(initVec);
+
+	return 0;
 }
