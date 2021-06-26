@@ -1,5 +1,5 @@
 #include <assert.h>
-#include "ymath.h"
+#include "smath.h"
 
 int main(void) {
 	vec3 *emptyVec = vec3_new_empty();

@@ -1,5 +1,5 @@
-#ifndef YMATH_H
-#define YMATH_H
+#ifndef SMATH_H
+#define SMATH_H
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
@@ -156,4 +156,5 @@ void vec3_prnt(vec3 *a) {
 /**********************
  *    MATRICES
  *********************/
+
 #endif
